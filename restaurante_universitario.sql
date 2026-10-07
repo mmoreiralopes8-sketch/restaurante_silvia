@@ -1,5 +1,4 @@
--- Banco de dados: Restaurante Universitário (SQLite / DB Browser for SQLite)
-PRAGMA foreign_keys = ON;
+
 
 DROP TABLE IF EXISTS Consumos;
 DROP TABLE IF EXISTS Cardapios;
@@ -26,7 +25,7 @@ CREATE TABLE Refeicoes (
 CREATE TABLE Cardapios (
     id_cardapio  INTEGER PRIMARY KEY AUTOINCREMENT,
     id_refeicao  INTEGER NOT NULL,
-    data         TEXT NOT NULL,          -- AAAA-MM-DD
+    data         TEXT NOT NULL,
     prato_principal TEXT NOT NULL,
     acompanhamento  TEXT NOT NULL,
     sobremesa       TEXT,
@@ -38,13 +37,13 @@ CREATE TABLE Consumos (
     id_consumo   INTEGER PRIMARY KEY AUTOINCREMENT,
     id_estudante INTEGER NOT NULL,
     id_cardapio  INTEGER NOT NULL,
-    data_consumo TEXT NOT NULL,          -- AAAA-MM-DD
+    data_consumo TEXT NOT NULL,
     valor_pago   REAL NOT NULL CHECK (valor_pago >= 0),
     FOREIGN KEY (id_estudante) REFERENCES Estudantes (id_estudante),
     FOREIGN KEY (id_cardapio)  REFERENCES Cardapios (id_cardapio)
 );
 
--- ESTUDANTES (10)
+
 INSERT INTO Estudantes (nome, matricula, curso, email, bolsista) VALUES
 ('Ana Beatriz Souza',     '2023001', 'Engenharia Civil',        'ana.souza@univ.edu.br',     1),
 ('Bruno Carvalho Lima',   '2023002', 'Ciência da Computação',   'bruno.lima@univ.edu.br',    0),
@@ -57,7 +56,7 @@ INSERT INTO Estudantes (nome, matricula, curso, email, bolsista) VALUES
 ('Isabela Costa',         '2021044', 'Arquitetura e Urbanismo', 'isabela.costa@univ.edu.br', 0),
 ('João Pedro Mendes',     '2023040', 'Biologia',                'joao.mendes@univ.edu.br',   0);
 
--- REFEIÇÕES (10)
+
 INSERT INTO Refeicoes (nome, tipo, horario, preco) VALUES
 ('Café Simples',           'Café da manhã', '07:00', 2.00),
 ('Café Completo',          'Café da manhã', '07:00', 3.50),
@@ -70,7 +69,7 @@ INSERT INTO Refeicoes (nome, tipo, horario, preco) VALUES
 ('Jantar Leve',            'Jantar',        '18:30', 4.00),
 ('Jantar Executivo',       'Jantar',        '18:30', 8.00);
 
--- CARDÁPIOS (10)
+
 INSERT INTO Cardapios (id_refeicao, data, prato_principal, acompanhamento, sobremesa, calorias) VALUES
 (1,  '2025-03-03', 'Pão com margarina',        'Café com leite',           'Banana',            280),
 (2,  '2025-03-03', 'Pão com ovos mexidos',     'Suco de laranja e frutas', 'Iogurte',           450),
@@ -83,7 +82,7 @@ INSERT INTO Cardapios (id_refeicao, data, prato_principal, acompanhamento, sobre
 (9,  '2025-03-06', 'Sopa de legumes',          'Torradas',                 'Mamão',             380),
 (10, '2025-03-07', 'Lasanha de frango',        'Salada caprese',           'Mousse de maracujá', 820);
 
--- CONSUMOS (10)
+
 INSERT INTO Consumos (id_estudante, id_cardapio, data_consumo, valor_pago) VALUES
 (1,  3,  '2025-03-03', 5.00),
 (2,  3,  '2025-03-03', 5.00),
